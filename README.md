@@ -114,7 +114,7 @@ sudo ln -s opencv4/opencv2
 
 cd
 
-# Instal TensorFlow2
+# Instal TensorFlow2 - python3
 
 pip install --upgrade pip
 
