@@ -114,8 +114,64 @@ sudo ln -s opencv4/opencv2
 
 cd
 
-# Instal TensorFlow
+# Instal TensorFlow2
 
 pip install --upgrade pip
 
-pip install tensorflow-gpu
+sudo pip install tensorflow-gpu
+
+
+# TensorFlow with venv
+
+- Virtual enviroment:
+	
+ sudo apt-get install python-pip python-dev python-virtualenv -y
+	
+ sudo pip install -U pip
+	
+ mkdir ~/Projects/tensorflow  
+	
+ cd ~/Projects/tensorflow
+	
+ virtualenv --system-site-packages venv
+	
+ source ~/Projects/tensorflow/venv/bin/activate 
+	
+ pip install -U pip
+	
+	ln -s /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7
+ 
+ sudo apt install nvidia-cuda-toolkit
+
+- Tensorflow with gpu suport:
+pip install -U tensorflow-gpu
+
+source ~/Projects/tensorflow/venv/bin/activate 
+
+- Tensorflow without gpu suport:
+	pip install -U tensorflow
+
+<<<ACTIVATE/DEACTIVATE VIRTUAL ENV>>>
+
+source ~/Projects/tensorflow/venv/bin/activate 
+deactivate venv
+
+# ROS
+
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+
+sudo apt-get update
+
+sudo apt-get install ros-kinetic-desktop-full
+
+sudo rosdep init
+
+rosdep update
+
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+
+source ~/.bashrc
+
+sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential
