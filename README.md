@@ -69,7 +69,7 @@ git clone https://github.com/opencv/opencv.git
 
 cd opencv
 
-git checkout 4.2.0
+git checkout 4.1.2
 
 cd ..
 
@@ -78,7 +78,7 @@ git clone https://github.com/opencv/opencv_contrib.git
 
 cd opencv_contrib
 
-git checkout 4.2.0
+git checkout 4.1.2
 
 cd ..
 
