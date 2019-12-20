@@ -38,7 +38,7 @@ sudo apt install nvidia-cuda-toolkit -y
 
 - [nvida-CDNN](https://developer.nvidia.com/rdp/cudnn-archive)
 
-# Install OPENCV:
+# Install OPENCV dependencies:
 sudo apt-get update
 
 sudo apt-get upgrade
@@ -62,3 +62,25 @@ sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavform
 sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
 
 sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+
+# Install OPENCV:
+
+git clone https://github.com/opencv/opencv.git
+
+cd opencv
+
+git checkout 4.2.0
+
+cd ..
+
+
+git clone https://github.com/opencv/opencv_contrib.git
+
+cd opencv_contrib
+
+git checkout 4.2.0
+
+cd ..
+
+mkdir ~/opencv/build/
+cd ~/opencv/build/
