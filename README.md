@@ -71,6 +71,8 @@ sudo -H pip3 install -U pip numpy
 
 sudo apt -y install python3-testresources
 
+pip3 install wheel numpy scipy matplotlib scikit-image scikit-learn ipython dlib
+
 # Install OPENCV:
 
 git clone https://github.com/opencv/opencv.git
