@@ -92,15 +92,53 @@ git checkout 4.1.2
 
 cd ..
 
-mkdir ~/opencv/build/ && cd ~/opencv/build/
-
 - Python2
+
+
+mkdir ~/opencv/build/ && cd ~/opencv/build/
 
 cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules/ -D PYTHON2_EXECUTABLE=/usr/bin/python2.7 -D PYTHON2_INCLUDE_DIR=/usr/include/python2.7/ -D PYTHON2_LIBRARY=/usr/lib/python2.7/config-x86_64-linux-gnu/libpython2.7.so  -D PYTHON2_NUMPY_INCLUDE_DIS=/usr/lib/python2.7/dist-packages/numpy/core/include/ -D PYTHON2_PACKAGES_PATH=/usr/local/lib/python2.7/dist-packages/ -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_C_EXAMPLES=ON -D OPENCV_ENABLE_NONFREE=ON -D INSTALL_PYTHON_EXAMPLES=ON -D BUILD_EXAMPLES=ON ..
 
 - Python3
 
-cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -D OPENCV_PYTHON3_INSTALL_PATH=$cwd/OpenCV-4.1.2-py3/lib/python3.5/site-packages -D WITH_V4L=ON -D WITH_OPENGL=ON -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D BUILD_EXAMPLES=ON ..
+https://www.pyimagesearch.com/2018/08/15/how-to-install-opencv-4-on-ubuntu/
+
+(On Root:)
+	wget https://bootstrap.pypa.io/get-pip.py
+
+	sudo python3 get-pip.py
+
+	sudo pip install virtualenv virtualenvwrapper
+
+	sudo rm -rf ~/get-pip.py ~/.cache/pip
+
+	echo -e "\n# virtualenv and virtualenvwrapper" >> ~/.bashrc
+
+	echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bashrc
+
+	echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
+
+	echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
+
+	source ~/.bashrc
+
+	mkvirtualenv cv -p python3
+
+	workon cv
+
+	pip install numpy
+
+	mkdir ~/opencv/build/ && cd ~/opencv/build/
+	
+	cmake -D CMAKE_BUILD_TYPE=RELEASE \
+	-D CMAKE_INSTALL_PREFIX=/usr/local \
+	-D INSTALL_PYTHON_EXAMPLES=ON \
+	-D INSTALL_C_EXAMPLES=OFF \
+	-D OPENCV_ENABLE_NONFREE=ON \
+	-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+	-D PYTHON_EXECUTABLE=~/.virtualenvs/cv/bin/python \
+	-D BUILD_EXAMPLES=ON ..
+
 
 make -j8
 
