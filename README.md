@@ -20,7 +20,7 @@ sudo apt-get update
 
 sudo apt-get install cuda -y
 
-- [nvida-CUDA](https://developer.nvidia.com/cuda90downloadarchivetarget_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=deblocal)
+- [nvida-CUDA](https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&target_arch=x86_64)
 
 # Install CDNN
 
@@ -37,6 +37,7 @@ ln -s /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7
 sudo apt install nvidia-cuda-toolkit -y
 
 - [nvida-CDNN](https://developer.nvidia.com/rdp/cudnn-archive)
+- [nvidia-CDNN9.0](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/7.6.4.38/Production/9.0_20190923/Ubuntu16_04-x64/libcudnn7_7.6.4.38-1%2Bcuda9.0_amd64.deb)
 
 # Install OPENCV dependencies:
 sudo apt-get update
