@@ -102,43 +102,7 @@ cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_E
 
 - Python3
 
-https://www.pyimagesearch.com/2018/08/15/how-to-install-opencv-4-on-ubuntu/
-
-(On Root:)
-	wget https://bootstrap.pypa.io/get-pip.py
-
-	sudo python3 get-pip.py
-
-	sudo pip install virtualenv virtualenvwrapper
-
-	sudo rm -rf ~/get-pip.py ~/.cache/pip
-
-	echo -e "\n# virtualenv and virtualenvwrapper" >> ~/.bashrc
-
-	echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bashrc
-
-	echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
-
-	echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
-
-	source ~/.bashrc
-
-	mkvirtualenv cv -p python3
-
-	workon cv
-
-	pip install numpy
-
-	mkdir ~/opencv/build/ && cd ~/opencv/build/
-	
-	cmake -D CMAKE_BUILD_TYPE=RELEASE \
-	-D CMAKE_INSTALL_PREFIX=/usr/local \
-	-D INSTALL_PYTHON_EXAMPLES=ON \
-	-D INSTALL_C_EXAMPLES=OFF \
-	-D OPENCV_ENABLE_NONFREE=ON \
-	-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
-	-D PYTHON_EXECUTABLE=~/.virtualenvs/cv/bin/python \
-	-D BUILD_EXAMPLES=ON ..
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D WITH_TBB=ON -D WITH_V4L=ON -D PYTHON_EXECUTABLE=/usr/bin/python3.5.2 -D OPENCV_PYTHON3_INSTALL_PATH=/usr/bin/python3.5.2 -D WITH_OPENGL=ON -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -D BUILD_EXAMPLES=ON ..
 
 
 make -j8
