@@ -50,6 +50,14 @@ sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
 sudo apt-get install libxvidcore-dev libx264-dev
 
 sudo apt-get install libgtk-3-dev
+	
+  - sudo add-apt-repository ppa:gnome3-team/gnome3-staging
+  
+  - sudo add-apt-repository ppa:gnome3-team/gnome3
+  
+  - sudo apt update
+  
+  - sudo apt dist-upgrade
 
 sudo apt-get install libatlas-base-dev gfortran
 
