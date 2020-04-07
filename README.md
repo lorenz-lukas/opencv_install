@@ -4,11 +4,7 @@ Opencv install guide C++ python
 
 # Install nividia drivers:
 
-sudo add-apt-repository -y ppa:xorg-edgers/ppa
-
-sudo apt-get update
-
-sudo apt-get install nvidia-346 nvidia-settings
+softwares&updates -> additiona; drivers -> clicar no driver e instalar
 
 # Install CUDA
 
@@ -24,11 +20,13 @@ sudo apt-get install cuda -y
 
 # Install CDNN
 
-tar -xzvf cudnn-9.0-linux-x64-v7.1.tgz
+tar -xzvf cudnn-9.0-linux-ppc64le-v7.1.tgz cuda/targets/ppc64le-linux/
 
-sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+sudo cp cuda/targets/ppc64le-linux/include/cudnn.h /usr/local/cuda/include
 
-sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+
+sudo cp cuda/targets/ppc64le-linux/lib/libcudnn* /usr/local/cuda/lib64
+
 
 sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*	
 
@@ -37,7 +35,6 @@ ln -s /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7
 sudo apt install nvidia-cuda-toolkit -y
 
 - [nvida-CDNN](https://developer.nvidia.com/rdp/cudnn-archive)
-- [nvidia-CDNN9.0](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/7.6.4.38/Production/9.0_20190923/Ubuntu16_04-x64/libcudnn7_7.6.4.38-1%2Bcuda9.0_amd64.deb)
 
 # Install OPENCV dependencies:
 sudo apt-get update
