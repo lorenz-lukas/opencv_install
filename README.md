@@ -186,3 +186,8 @@ echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
 sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential
+
+
+# References:
+
+https://linuxize.com/post/how-to-install-opencv-on-ubuntu-20-04/
