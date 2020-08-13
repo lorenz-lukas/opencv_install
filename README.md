@@ -18,19 +18,17 @@ sudo apt-get install cuda -y
 
 - [nvida-CUDA](https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&target_arch=x86_64)
 
-# Install CDNN
+# Install CDNN V7.1.4
 
-tar -xzvf cudnn-9.0-linux-ppc64le-v7.1.tgz cuda/targets/ppc64le-linux/
+tar -xzvf cudnn-9.0-linux-x64-v7.1.tgz cuda/
 
-sudo cp cuda/targets/ppc64le-linux/include/cudnn.h /usr/local/cuda/include
+sudo cp cuda/include/cudnn.h /usr/local/cuda/include
 
-
-sudo cp cuda/targets/ppc64le-linux/lib/libcudnn* /usr/local/cuda/lib64
-
+sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
 
 sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*	
 
-ln -s /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7
+ln -s /usr/local/cuda-9.0/lib64/libcudnn.so.7
 
 sudo apt install nvidia-cuda-toolkit -y
 
