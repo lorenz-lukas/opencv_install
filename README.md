@@ -189,7 +189,7 @@ source ~/Projects/tensorflow/venv/bin/activate
 source ~/Projects/tensorflow/venv/bin/activate 
 deactivate venv
 
-# ROS
+# ROS (Python 2 - it will change opencv configs)
 
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 
