@@ -22,27 +22,10 @@ sudo apt-get install cuda -y
 
 - [nvida-CUDA](https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&target_arch=x86_64)
 
-# Install CUDA ubuntu 20.04
 
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+# Install CDNN V7.6.5
 
-sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
-
-wget https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/cuda-repo-ubuntu2004-11-0-local_11.0.3-450.51.06-1_amd64.deb
-
-sudo dpkg -i cuda-repo-ubuntu2004-11-0-local_11.0.3-450.51.06-1_amd64.deb
-
-sudo apt-key add /var/cuda-repo-ubuntu2004-11-0-local/7fa2af80.pub
-
-sudo apt-get update
-
-sudo apt-get -y install cuda
-
-- [CUDA](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=2004&target_type=deblocal)
-
-# Install CDNN V7.1.4
-
-tar -xzvf cudnn-9.0-linux-x64-v7.1.tgz cuda/
+tar -xzvf cudnn-9.0-linux-x64-v7.6.5.32.tgz 
 
 sudo cp cuda/include/cudnn.h /usr/local/cuda/include
 
