@@ -4,6 +4,10 @@ Opencv install guide C++ python
 
 # Install nividia drivers:
 
+sudo add-apt-repository ppa:graphics-drivers/ppa
+
+sudo apt update
+
 softwares&updates -> additiona; drivers -> clicar no driver e instalar
 
 # Install CUDA
