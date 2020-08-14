@@ -93,6 +93,8 @@ sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython
  
 sudo apt -y install python3-dev python3-pip
 
+sudo -H pip3 install --upgrade pip
+
 sudo -H pip3 install -U pip numpy
 
 sudo apt -y install python3-testresources
