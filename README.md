@@ -195,26 +195,42 @@ sudo apt install python-rosinstall python-rosinstall-generator python-wstool bui
 
 # Carla Simulator
 
-	https://docs.unrealengine.com/en-US/Platforms/Linux/BeginnerLinuxDeveloper/SettingUpAnUnrealWorkflow/index.html
+sudo apt-get install build-essential clang-3.9 git cmake ninja-build python3-requests python-dev tzdata sed curl wget unzip autoconf libtool
+
+sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/lib/llvm-3.9/bin/clang++ 100
+
+sudo update-alternatives --install /usr/bin/clang clang /usr/lib/llvm-3.9/bin/clang 100
+
+
+- https://docs.unrealengine.com/en-US/Platforms/Linux/BeginnerLinuxDeveloper/SettingUpAnUnrealWorkflow/index.html
 
 	(CLOSED REPO)
 
-	git clone --depth=1 -b 4.24 https://github.com/EpicGames/UnrealEngine.git ~/UnrealEngine_4.24
+- git clone --depth=1 -b 4.24 https://github.com/EpicGames/UnrealEngine.git ~/UnrealEngine_4.24
 
-	cd ~/UnrealEngine_4.24
+- cd ~/UnrealEngine_4.24
 
-	wget https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/UE_Patch/430667-13636743-patch.txt ~/430667-13636743-patch.txt
-	patch --strip=4 < ~/430667-13636743-patch.txt
+- wget https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/UE_Patch/430667-13636743-patch.txt ~/430667-13636743-patch.txt patch --strip=4 < ~/430667-13636743-patch.txt
 
-	./Setup.sh && ./GenerateProjectFiles.sh && make
+- ./Setup.sh && ./GenerateProjectFiles.sh && make
 	
-	cd ~/UnrealEngine_4.24/Engine/Binaries/Linux && ./UE4Editor
+- cd ~/UnrealEngine_4.24/Engine/Binaries/Linux && ./UE4Editor
 	
 sudo apt-get install aria2
 
 git clone https://github.com/carla-simulator/carla
 
-git checkout stable
+cd carla 
+
+./Setup.sh
+
+UE4_ROOT=~/UnrealEngine_4.18 ./Rebuild.sh
+
+cd Unreal/CarlaUE4
+
+make CarlaUE4Editor
+
+-> Updating Carla
 
 ./Update.sh
 
