@@ -1,4 +1,4 @@
-# opencv_install
+# opencv_install 16.04
 Opencv install guide C++ python
 
 
@@ -39,7 +39,7 @@ sudo apt install nvidia-cuda-toolkit -y
 
 - [nvida-CDNN](https://developer.nvidia.com/rdp/cudnn-archive)
 
-# Install OPENCV dependencies:
+# Install OPENCV dependencies UBUNTU 16.04:
 sudo apt-get update
 
 sudo apt-get upgrade
@@ -130,7 +130,7 @@ sudo ln -s opencv4/opencv2
 
 cd
 
-# Instal TensorFlow2 - python3
+# Instal TensorFlow2 - python3 UBUNTU 16.04
 
 pip install tensorflow-tensorboard
 
@@ -193,54 +193,15 @@ source ~/.bashrc
 
 sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential
 
-# Carla Simulator
+# Carla Simulator (ANY UBUNTU)
 
-sudo apt-get install build-essential clang-3.9 git cmake ninja-build python3-requests python-dev tzdata sed curl wget unzip autoconf libtool
+DOWNLOAD FROM https://github.com/carla-simulator/carla/releases/tag/0.9.9
 
-sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/lib/llvm-3.9/bin/clang++ 100
+RUN ./CarlaUE4.sh
 
-sudo update-alternatives --install /usr/bin/clang clang /usr/lib/llvm-3.9/bin/clang 100
+# OPENCV UBUNTU 20.04
 
-
-- https://docs.unrealengine.com/en-US/Platforms/Linux/BeginnerLinuxDeveloper/SettingUpAnUnrealWorkflow/index.html
-
-	(CLOSED REPO)
-
-- git clone --depth=1 -b 4.24 https://github.com/EpicGames/UnrealEngine.git ~/UnrealEngine_4.24
-
-- cd ~/UnrealEngine_4.24
-
-- wget https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/UE_Patch/430667-13636743-patch.txt ~/430667-13636743-patch.txt patch --strip=4 < ~/430667-13636743-patch.txt
-
-- ./Setup.sh && ./GenerateProjectFiles.sh && make
-	
-- cd ~/UnrealEngine_4.24/Engine/Binaries/Linux && ./UE4Editor
-	
-sudo apt-get install aria2
-
-git clone https://github.com/carla-simulator/carla
-
-cd carla 
-
-./Setup.sh
-
-UE4_ROOT=~/UnrealEngine_4.18 ./Rebuild.sh
-
-cd Unreal/CarlaUE4
-
-make CarlaUE4Editor
-
--> Updating Carla
-
-./Update.sh
-
-export UE4_ROOT=~/UnrealEngine_4.24
-
-make launch
-
-make PythonAPI && cd PythonAPI/examples && python3 spawn_npc.py
-
-OBS:  If the simulation is running at very low FPS rates, go to Edit/Editor preferences/Performance in the UE editor and disable Use less CPU when in background.
+# TENSORFLOW UBUNTU 20.04
 
 # References:
 
@@ -248,4 +209,4 @@ https://linuxize.com/post/how-to-install-opencv-on-ubuntu-20-04/
 
 https://www.tensorflow.org/install/pip?hl=pt-br
 
-https://carla.readthedocs.io/en/stable/how_to_build_on_linux/
+https://carla.readthedocs.io/en/stable/getting_started/
