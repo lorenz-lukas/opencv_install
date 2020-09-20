@@ -39,7 +39,7 @@ sudo apt install nvidia-cuda-toolkit -y
 
 - [nvida-CDNN](https://developer.nvidia.com/rdp/cudnn-archive)
 
-# Install OPENCV dependencies UBUNTU 16.04:
+# Install OPENCV dependencies UBUNTU 16.04 C/C++ and Python:
 sudo apt-get update
 
 sudo apt-get upgrade
@@ -307,6 +307,12 @@ cd
 # TENSORFLOW UBUNTU 20.04
 
 pip install tensorflow
+
+# INSTALL OPENCV ONLY PYTHON3:
+
+pip3 install opencv-python
+
+pip3 install opencv-python-contrib
 
 # References:
 
