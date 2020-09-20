@@ -310,6 +310,20 @@ pip install tensorflow
 
 # INSTALL OPENCV ONLY PYTHON3:
 
+- Dependencies:
+
+sudo apt -y install python3-dev python3-pip
+
+sudo -H pip3 install --upgrade pip
+
+sudo -H pip3 install -U pip numpy
+
+sudo apt -y install python3-testresources
+
+pip3 install wheel numpy scipy matplotlib scikit-image scikit-learn ipython dlib
+
+- Packages:
+
 pip3 install opencv-python
 
 pip3 install opencv-python-contrib
