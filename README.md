@@ -322,6 +322,27 @@ sudo apt -y install python3-testresources
 
 pip3 install wheel numpy scipy matplotlib scikit-image scikit-learn ipython dlib
 
+sudo apt-get install libgtk-3-dev
+
+sudo apt-get install python3-dev python3-pip
+
+sudo -H pip3 install -U pip numpy
+
+sudo apt install python3-testresources
+
+pip3 install wheel numpy scipy matplotlib scikit-image scikit-learn ipython dlib
+
+sudo apt-get install libtbb-dev
+
+sudo apt-get install libatlas-base-dev gfortran
+
+sudo apt-get install libprotobuf-dev protobuf-compiler
+
+sudo apt-get install libgoogle-glog-dev libgflags-dev
+
+sudo apt-get install libgphoto2-dev libeigen3-dev libhdf5-dev doxygen
+
+
 - Packages:
 
 pip3 install opencv-python
