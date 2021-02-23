@@ -1,6 +1,17 @@
 # opencv_install 16.04
 Opencv install guide C++ python
 
+# Create Opencv 4.5.1 DOCKER with C++11 and Python3.8.5
+
+sudo docker build - < Dockerfile --label opencv4 --tag opencv4
+
+# RUN opencv in container
+
+sudo docker run --device=/dev/video0:/dev/video0 -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -p 5000:5000 -p 8888:8888 -w /Projects -it opencv4 /bin/bash 
+
+sudo docker exec -it opencv4 powershell
+
+sudo docker cp ~/Projects/opencv_install/TEST/. 156d92c3bd52:/Projects
 
 # Install nividia drivers:
 
