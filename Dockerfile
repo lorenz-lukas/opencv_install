@@ -42,7 +42,7 @@ RUN git checkout 4.5.1 \
 
 WORKDIR /opencv/build/
 
-RUN ls /usr/bin
+#RUN ls /usr/bin
 
 ## BUILD OPENCV - CUDA OFF
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_C_COMPILER=/usr/bin/gcc-9 \
@@ -65,3 +65,11 @@ WORKDIR /usr/local/include/
 
 RUN ln -s opencv4/opencv2 \ 
     && mkdir -p /Projects/ 
+
+# # USER ${UID}:${GID}
+# RUN USER_ID=$(id -u ) \
+#    && USER_GROUP=$(id -g )
+
+RUN groupadd -g 1000 opencv && useradd -u 1000 -g opencv -s /bin/bash opencv
+
+USER opencv
