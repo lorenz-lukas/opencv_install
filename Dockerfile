@@ -1,13 +1,17 @@
 FROM ubuntu:20.04
 
+ARG OPENCV_VERSION=4.5.1
+
 ## BUILD BASIC PACKAGES
-RUN apt update \
-    && DEBIAN_FRONTEND="noninteractive" apt -y install tzdata \
-    && apt install -y build-essential cmake pkg-config unzip yasm git checkinstall libjpeg-dev \
+RUN apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get -y install --no-install-recommends --yes --fix-missing tzdata \
+    && apt-get install --no-install-recommends --yes --fix-missing \
+    build-essential cmake pkg-config unzip yasm git checkinstall libjpeg-dev \
     libpng-dev libtiff-dev libavcodec-dev libavformat-dev libswscale-dev libavresample-dev \
     libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libxvidcore-dev x264 libx264-dev \
     libfaac-dev libmp3lame-dev libtheora-dev libfaac-dev libmp3lame-dev libvorbis-dev \
-    libopencore-amrnb-dev libopencore-amrwb-dev libdc1394-22 libdc1394-22-dev libxine2-dev libv4l-dev v4l-utils 
+    libopencore-amrnb-dev libopencore-amrwb-dev libdc1394-22 libdc1394-22-dev libxine2-dev libv4l-dev v4l-utils  \
+    && apt-get clean && rm -rf /tmp/* /var/tmp/*
 
 WORKDIR /usr/include/linux
 
@@ -15,34 +19,31 @@ RUN ln -s -f ../libv4l1-videodev.h videodev.h
 
 WORKDIR /
 
-## BUILD OPENCV PYTHON PACKAGES
-RUN apt-get install -y libgtk-3-dev python3-dev python3-pip python3-testresources
+## BUILD OPENCV PYTHON AND C++ PACKAGES
+RUN apt-get install --no-install-recommends --yes --fix-missing libgtk-3-dev \
+    python3-dev python3-pip python3-testresources libcanberra-gtk-module \
+    libcanberra-gtk3-module libtbb-dev libatlas-base-dev gfortran \
+    libprotobuf-dev protobuf-compiler libgoogle-glog-dev libgflags-dev \
+    libgphoto2-dev libeigen3-dev libhdf5-dev doxygen \
+    && apt-get clean && rm -rf /tmp/* /var/tmp/*  
 
 RUN pip3 install wheel numpy scipy matplotlib scikit-image scikit-learn \
-    ipython dlib 
+    dlib 
 
 RUN git clone https://github.com/opencv/opencv.git \
     && git clone https://github.com/opencv/opencv_contrib.git
 
-## BUILD C++ PACKAGES
-RUN apt-get -y install libtbb-dev libatlas-base-dev gfortran \
-    libprotobuf-dev protobuf-compiler libgoogle-glog-dev libgflags-dev \
-    libgphoto2-dev libeigen3-dev libhdf5-dev doxygen 
-
-
-
+## SET OPENCV VERSION
 WORKDIR /opencv/ 
 
-RUN git checkout 4.5.1
+RUN git checkout $OPENCV_VERSION
 
 WORKDIR /opencv_contrib/
 
-RUN git checkout 4.5.1 \
+RUN git checkout $OPENCV_VERSION \
     && mkdir -p /opencv/build
 
 WORKDIR /opencv/build/
-
-#RUN ls /usr/bin
 
 ## BUILD OPENCV - CUDA OFF
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_C_COMPILER=/usr/bin/gcc-9 \
@@ -66,10 +67,7 @@ WORKDIR /usr/local/include/
 RUN ln -s opencv4/opencv2 \ 
     && mkdir -p /Projects/ 
 
-# # USER ${UID}:${GID}
-# RUN USER_ID=$(id -u ) \
-#    && USER_GROUP=$(id -g )
-
+# SET USER
 RUN groupadd -g 1000 opencv && useradd -u 1000 -g opencv -s /bin/bash opencv
 
 USER opencv
