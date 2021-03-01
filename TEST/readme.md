@@ -1,3 +1,42 @@
+# Install opencv for Ubuntu 16
+
+# Install CUDA
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+
+sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+
+wget https://developer.download.nvidia.com/compute/cuda/11.2.1/local_installers/cuda-repo-ubuntu2004-11-2-local_11.2.1-460.32.03-1_amd64.deb
+
+sudo dpkg -i cuda-repo-ubuntu2004-11-2-local_11.2.1-460.32.03-1_amd64.deb
+
+sudo apt-key add /var/cuda-repo-ubuntu2004-11-2-local/7fa2af80.pub
+
+sudo apt-get update
+
+sudo apt-get -y install cuda
+
+- [nvida-CUDA](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=2004&target_type=deblocal)
+
+
+# Install CDNN V8.0.5
+
+// tar -xzvf cudnn-9.0-linux-x64-v7.6.5.32.tgz 
+
+// sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+
+// sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+
+// sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*	
+
+// ln -s /usr/local/cuda-9.0/lib64/libcudnn.so.7
+
+sudo dpkg -i libcudnn8_x.x.x-1+cudax.x_amd64.deb
+
+sudo apt install nvidia-cuda-toolkit -y
+
+- [nvida-CDNN](https://developer.nvidia.com/rdp/cudnn-archive)
+
 # Install OPENCV dependencies UBUNTU 16.04 C/C++ and Python:
 
 sudo apt-get update
