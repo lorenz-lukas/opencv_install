@@ -43,8 +43,10 @@ RUN ./CarlaUE4.sh
 
 -> cdnn 7.6.5:
 
-	https://developer.nvidia.com/rdp/cudnn-archive
-
+	[DOWNLOAD](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.0.5/11.1_20201106/cudnn-11.1-linux-x64-v8.0.5.39.tgz)
+	
+	[REFERENCE](https://developer.nvidia.com/rdp/cudnn-archive)
+	
 	tar -xvzf cudnn-10.1-linux-x64-v7.6.5.32.tgz
 	
 	sudo cp cuda/include/cudnn.h /usr/lib/cuda/include/
