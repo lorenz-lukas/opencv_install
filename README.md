@@ -60,6 +60,23 @@ RUN ./CarlaUE4.sh
 	echo 'export LD_LIBRARY_PATH=/usr/lib/cuda/include:$LD_LIBRARY_PATH' >> ~/.bashrc
 	
 	source ~/.bashrc
+
+-> After extracting:
+
+	sudo cp cuda/include/* /usr/lib/cuda/include/
+
+	sudo cp cuda/lib64/libcudnn* /usr/lib/cuda/lib64/
+	
+	sudo chmod a+r /usr/lib/cuda/include/cudnn.h /usr/lib/cuda/lib64/libcudnn*
+	
+	
+   Once you finish, you have to add the CUDA path to your ~/.bashrc file. Open ~/.bashrc and add following lines:
+
+	echo 'export LD_LIBRARY_PATH=/usr/lib/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+	
+	echo 'export LD_LIBRARY_PATH=/usr/lib/cuda/include:$LD_LIBRARY_PATH' >> ~/.bashrc
+
+	source ~/.bashrc
 	
 -> opencv
 
