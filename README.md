@@ -1,22 +1,12 @@
 # Create Opencv 4.5.1 DOCKER with C++11 and Python3.8.5
 
-sudo docker build - < Dockerfile --label opencv4 --tag opencv4.5.1
+ - If you need a docker image with CPU only, go to CPU dir to get more info;
 
-# RUN opencv in container
+ - If you need a docker image with GPU, go to GOU dir to get more info;
 
- - device: mapping device from outside of the container;
- - v: mapping volume - folder to container;
- - e: enviroment variable;
- - p: port to comunicate
- - w: workdir
+ - If you need to install direct to the computer, follow the instructions in readme-ubuntu20.md or readme-ubuntu16.md. 
 
-sudo docker run --device=/dev/video0:/dev/video0 -v $(pwd)/findFaces:/Projects -v /tmp/.X11-unix:/tmp/.X11-unix --volume="$HOME/.Xauthority:/root/.Xauthority:rw" -e DISPLAY=$DISPLAY -p 5000:5000 -p 8888:8888 -w /Projects -it --entrypoint=/bin/bash --name=opencv4.5.1 opencv4:latest 
+# Further implementations:
 
-<!-- sudo docker run --device=/dev/video0:/dev/video0 -v $(pwd)/findFaces:/Projects -v /tmp/.X11-unix:/tmp/.X11-unix --volume="$HOME/.Xauthority:/root/.Xauthority:rw" -e DISPLAY=$DISPLAY -p 5000:5000 -p 8888:8888 -w /Projects -it --entrypoint=/bin/bash --name=opencv4.5.1 opencv4:latest 
+ - Installing opencv with Ansible;
 
-
-sudo docker run --device=/dev/video0:/dev/video0 -v $(pwd)/findFaces:/Projects -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -p 5000:5000 -p 8888:8888 -w /Projects -it --entrypoint=/bin/bash --security-opt label=disable --name=opencv4 opencv4:latest  -->
-
-sudo docker start -i opencv4.5.1
-
-sudo docker cp ~/Projects/opencv_install/TEST/. 156d92c3bd52:/Projects
