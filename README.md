@@ -32,8 +32,11 @@ softwares&updates -> additional drivers -> clicar no driver e instalar
 # OPENCV UBUNTU 20.04
 
 -> CUDA 10.1.2:
-	
+
+	https://towardsdatascience.com/installing-multiple-cuda-cudnn-versions-in-ubuntu-fcb6aa5194e2
+
 	sudo apt install nvidia-cuda-toolkit
+	
 -> Cuda 11.2.0:
 	
 	https://developer.nvidia.com/cuda-11.2.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=2004&target_type=deblocal
@@ -48,18 +51,29 @@ softwares&updates -> additional drivers -> clicar no driver e instalar
 	- After extracting:
 
 		sudo cp cuda/include/* /usr/lib/cuda/include/
+		
+		# sudo cp cuda/include/* /usr/lib/x86_64-linux-gnu
 
 		sudo cp cuda/lib64/libcudnn* /usr/lib/cuda/lib64/
-
+		
+		# sudo cp cuda/lib64/libcudnn* /usr/lib/x86_64-linux-gnu
+		
 		sudo chmod a+r /usr/lib/cuda/include/cudnn.h /usr/lib/cuda/lib64/libcudnn*
 
+		# sudo chmod a+r /usr/lib/x86_64-linux-gnu/cudnn.h /usr/lib/x86_64-linux-gnu/libcudnn*
 
 	- Once you finish, you have to add the CUDA path to your ~/.bashrc file. Open ~/.bashrc and add following lines:
 
 		echo 'export LD_LIBRARY_PATH=/usr/lib/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
 
 		echo 'export LD_LIBRARY_PATH=/usr/lib/cuda/include:$LD_LIBRARY_PATH' >> ~/.bashrc
+		
+		echo 'export PATH=/usr/local/cuda-11.2/bin${PATH:+:${PATH}}' >> ~/.bashrc
 
+		echo 'export LD_LIBRARY_PATH=/usr/lib/cuda-11.2/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+
+		echo 'export LD_LIBRARY_PATH=/usr/lib/cuda-11.2/include:$LD_LIBRARY_PATH' >> ~/.bashrc
+		
 		source ~/.bashrc
 
 -> opencv
@@ -98,7 +112,7 @@ softwares&updates -> additional drivers -> clicar no driver e instalar
 
 	sudo apt install python3-testresources
 
-	pip3 install wheel numpy scipy matplotlib scikit-image scikit-learn ipython dlib
+	pip3 install dlib tensorflow scipy matplotlib scikit-image scikit-learn
 
 	sudo apt-get install libtbb-dev
 
@@ -116,21 +130,53 @@ softwares&updates -> additional drivers -> clicar no driver e instalar
 
 	git clone https://github.com/opencv/opencv_contrib.git
 
-	cd opencv && git checkout 4.3.0 && cd ..
+	cd opencv && git checkout 4.5.1 && cd ..
 
-	cd opencv_contrib && git checkout 4.3.0 && cd ..
+	cd opencv_contrib && git checkout 4.5.1 && cd ..
 
 	mkdir -p opencv/build && cd opencv/build
 
-	-> building OPENCV
+-> building OPENCV
 
-cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_C_COMPILER=/usr/bin/gcc-8 -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=ON -D INSTALL_C_EXAMPLES=ON -D WITH_TBB=ON -D WITH_CUDA=ON -D WITH_CUDNN=ON -D OPENCV_DNN_CUDA=ON -D ENABLE_FAST_MATH=1 -D CUDA_FAST_MATH=1 -D CUDA_ARCH_BIN=7.0 -D WITH_CUBLAS=1 -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules/ -D PYTHON_EXECUTABLE=/usr/bin/python3.8 -D PYTHON3_INCLUDE_DIR=/usr/include/python3.8 -D PYTHON3_LIBRARY=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu/libpython3.8.so -D PYTHON3_NUMPY_INCLUDE_DIS=/usr/local/lib/python3.8/dist-packages/numpy/core/include -D PYTHON3_PACKAGES_PATH=/usr/local/lib/python3.8/dist-packages/ -D BUILD_EXAMPLES=ON .. 
-	
-	
-	
+OBS: -D CUDA_ARCH_BIN=7.5 for GTX1660 and Turing arch
+(https://developer.nvidia.com/cuda-gpus)
+(https://en.wikipedia.org/wiki/CUDA)
 
-	(IT does not work for me...)
-	-D WITH_CUDNN=ON -D OPENCV_DNN_CUDA=ON -D CUDA_ARCH_BIN=7.5 -D WITH_CUDNN=ON -D OPENCV_DNN_CUDA=ON -D CUDA_ARCH_BIN=7.5 -D CUDNN_LIBRARY=/usr/local/cuda/lib64/libcudnn.so.7.6.5 -D CUDNN_INCLUDE_DIR=/usr/local/cuda/include .. 
+(https://gist.github.com/raulqf/f42c718a658cddc16f9df07ecc627be7)
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+	-D CMAKE_C_COMPILER=/usr/bin/gcc-9 \
+	-D CMAKE_INSTALL_PREFIX=/usr/local \
+	-D INSTALL_PYTHON_EXAMPLES=ON \
+	-D INSTALL_C_EXAMPLES=ON \
+	-D WITH_TBB=ON \
+	-D WITH_CUDA=ON \
+	-D CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.2/ \
+	-D WITH_CUDNN=ON \
+	-D OPENCV_DNN_CUDA=ON \
+	-D ENABLE_FAST_MATH=1 \
+	-D CUDA_FAST_MATH=1 \
+	-D CUDA_ARCH_BIN=7.5 \
+	-D WITH_CUBLAS=1 \
+	-D CUDNN_INCLUDE_DIR=/usr/lib/cuda/include/ \
+	-D CUDNN_LIBRARY=/usr/lib/cuda/lib64/libcudnn.so.8.1.0 \
+	-D CUDNN_VERSION=8.1.0 \
+	-D WITH_V4L=ON \
+	-D WITH_QT=OFF \
+	-D WITH_OPENGL=ON \
+	-D WITH_GSTREAMER=ON \
+	-D OPENCV_GENERATE_PKGCONFIG=ON \
+	-D OPENCV_PC_FILE_NAME=opencv.pc \
+	-D OPENCV_ENABLE_NONFREE=ON \
+	-D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules/ \
+	-D PYTHON_EXECUTABLE=/usr/bin/python3.8 \
+	-D PYTHON3_INCLUDE_DIR=/usr/include/python3.8 \
+	-D PYTHON3_LIBRARY=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu/libpython3.8.so \
+	-D PYTHON3_NUMPY_INCLUDE_DIS=/usr/local/lib/python3.8/dist-packages/numpy/core/include \
+	-D PYTHON3_PACKAGES_PATH=/usr/local/lib/python3.8/dist-packages/ \
+	-D BUILD_EXAMPLES=ON .. 
+
+If you want to build the libraries statically you only have to include the -D BUILD_SHARED_LIBS=OFF
 
 	make -j8
 
@@ -140,11 +186,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_C_COMPILER=/usr/bin/gcc-8 -D CMAKE_IN
 
 	    If the ld does not work correctly:
 
-	cd /usr/local/include/
-
-	sudo ln -s opencv4/opencv2
-
-	cd
+	cd /usr/local/include/ && sudo ln -s opencv4/opencv2 && cd
 
 - If python linkage does not work properly you can install by Pypi:
 
