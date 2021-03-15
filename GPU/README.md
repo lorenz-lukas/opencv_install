@@ -3,7 +3,7 @@ Opencv install guide C++ python
 
 # Create Opencv 4.5.1 DOCKER with C++11 and Python3.8.5
 
-sudo docker build - < Dockerfile --label opencv-gpu --tag opencv4.5.1
+sudo docker build . --label opencv-gpu --tag opencv4.5.1 
 
 # RUN opencv in container
 
