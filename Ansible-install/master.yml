@@ -1,0 +1,8 @@
+---
+  - hosts: masters
+    become: yes
+    remote_user: opencv
+    roles:
+      - nvidia
+      - basic-dependendencies
+      - opencv
