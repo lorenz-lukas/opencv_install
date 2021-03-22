@@ -12,21 +12,17 @@ COPY ${CUDNN_TAR_FILE} /usr/lib/cuda/include/
 RUN apt-get update \
     && DEBIAN_FRONTEND="noninteractive" apt-get -y install --no-install-recommends --yes --fix-missing tzdata \
     && apt-get install --no-install-recommends --yes --fix-missing \
-    apt-utils build-essential cmake pkg-config unzip yasm git checkinstall libjpeg-dev \
+    build-essential cmake pkg-config unzip yasm git checkinstall libjpeg-dev \
     libpng-dev libtiff-dev libavcodec-dev libavformat-dev libswscale-dev libavresample-dev \
     libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libxvidcore-dev x264 libx264-dev \
     libfaac-dev libmp3lame-dev libtheora-dev libfaac-dev libmp3lame-dev libvorbis-dev \
     libopencore-amrnb-dev libopencore-amrwb-dev libdc1394-22 libdc1394-22-dev libxine2-dev libv4l-dev v4l-utils \
     nvidia-cuda-toolkit python3-tk wget\
-    && apt-get clean && rm -rf /tmp/* /var/tmp/* \
-    && chmod a+r /usr/lib/cuda/include/cudnn.h \
-    && echo 'export LD_LIBRARY_PATH=/usr/lib/cuda/include:$LD_LIBRARY_PATH' >> ~/.bashrc \
-	&& echo 'export PATH=/usr/local/cuda-11.0/bin${PATH:+:${PATH}}' >> ~/.bashrc \
-    && source ~/.bashrc
+    && apt-get clean && rm -rf /tmp/* /var/tmp/* 
 
 WORKDIR /usr/include/linux
 
-RUN ln -s -f ../libv4l1-videodev.h videodev.h
+RUN ln -s -f ../libv4l1-videodev.h videodev.h 
 
 WORKDIR /
 
@@ -43,7 +39,12 @@ RUN apt-get install --no-install-recommends --yes --fix-missing libgtk-3-dev \
 RUN pip3 install tensorflow dlib face-recognition imutils scipy matplotlib scikit-image scikit-learn 
 
 RUN git clone https://github.com/opencv/opencv.git \
-    && git clone https://github.com/opencv/opencv_contrib.git
+    && git clone https://github.com/opencv/opencv_contrib.git 
+    
+RUN chmod a+r /usr/lib/cuda/include/nvidia-cudnn8.0.5/include/cudnn*.h /usr/lib/x86_64-linux-gnu/libcudnn* \ 
+    && echo 'export LD_LIBRARY_PATH=/usr/lib/cuda-11.0/include:$LD_LIBRARY_PATH' >> /root/.bashrc \
+	# && cat 'export PATH=/usr/local/cuda-11.0/bin${PATH:+:${PATH}}' >> /root/.bashrc \
+    && /bin/bash -c "source /root/.bashrc" 
 
 ## SET OPENCV VERSION
 WORKDIR /opencv/ 
@@ -57,7 +58,9 @@ RUN git checkout $OPENCV_VERSION \
 
 WORKDIR /opencv/build/
 
-## BUILD OPENCV - CUDA OFF
+## BUILD OPENCV 
+
+#-D BUILD_SHARED_LIBS=OFF
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_C_COMPILER=/usr/bin/gcc-9 \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
@@ -65,7 +68,7 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D INSTALL_C_EXAMPLES=ON \
     -D WITH_TBB=ON \ 
     -D WITH_CUDA=ON \
-    -D CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.0/ \
+    -D CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda/ \
     -D WITH_CUDNN=ON \
     -D OPENCV_DNN_CUDA=ON \
     -D ENABLE_FAST_MATH=1 \
@@ -90,7 +93,7 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D PYTHON3_PACKAGES_PATH=/usr/local/lib/python3.8/dist-packages/ \
     -D BUILD_EXAMPLES=ON ..
 
-RUN make -j8 \
+RUN make -j$(nproc) \
     && make install \
     && ldconfig 
 

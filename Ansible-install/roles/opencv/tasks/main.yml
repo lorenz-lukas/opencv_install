@@ -1,0 +1,9 @@
+- name: Creates opencv build directory
+  file:
+    path: /opencv/build
+    state: directory
+
+- name: Go to the folder
+  command: 
+    - name: 
+      - chdir=/opencv/build

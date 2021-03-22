@@ -1,0 +1,25 @@
+- name: Update system before install nvidia drivers
+  apt:
+    name: nvidia-cuda-toolkit
+    # update_cache: yes
+
+# - name: Copy Nvidia cudnn files
+#   ansible.builtin.copy:
+#     src: /etc/sudoers
+#     dest: /etc/sudoers.edit
+
+# - name: Change file ownership, group and permissions
+#   ansible.builtin.file:
+#     path: /usr/lib/cuda/include/cudnn.h
+#     mode: '0644'
+
+# - name: Change file ownership, group and permissions
+#   ansible.builtin.file:
+#     path: /usr/lib/cuda/lib64/libcudnn*
+#     mode: '0644'
+
+# - name: Link cuda64
+#       shell: "echo 'export LD_LIBRARY_PATH=/usr/lib/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc"
+
+# - name: Link cuda - include
+#       shell: "echo 'export LD_LIBRARY_PATH=/usr/lib/cuda/include:$LD_LIBRARY_PATH' >> ~/.bashrc"

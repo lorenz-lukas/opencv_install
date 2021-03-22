@@ -1,8 +1,8 @@
 ---
   - hosts: masters
     become: yes
-    remote_user: opencv
+    remote_user: vagrant
     roles:
-      - nvidia
-      - basic-dependendencies
-      - opencv
+      - dependencies
+      # - basic-dependendencies
+      # - opencv

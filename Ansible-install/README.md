@@ -1,5 +1,6 @@
-# Vagrant_lab
-Vagrant Lab with Ansible, K8s and Docker. Docker image with Vuejs example.
+# Ansible to Opencv
+
+Using Ansible to install opencv 4.5.1. 
 
 # Install packages
 
@@ -19,7 +20,7 @@ Vagrant Lab with Ansible, K8s and Docker. Docker image with Vuejs example.
 
     - https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04-pt
 
-# Ansible first steps:
+# Ansible first steps if there is no Vagrantfile:
 
     - vagrant init
 
@@ -41,13 +42,13 @@ Vagrant Lab with Ansible, K8s and Docker. Docker image with Vuejs example.
 
     - ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ./.vagrant/machines/default/virtualbox/private_key vagrant@192.168.33.11
 
-    - scp -i ./.vagrant/machines/default/virtualbox/private_key -r ~/.ssh/opencv.pub vagrant@192.168.33.11:/home/vagrant/.ssh/opencv.pub 
+    - scp -i ./.vagrant/machines/default/virtualbox/private_key -r ~/.ssh/opencv_id.pub vagrant@192.168.33.11:/home/vagrant/.ssh/opencv.pub 
 
     - ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ./.vagrant/machines/default/virtualbox/private_key vagrant@192.168.33.11
     
-    - cat ~/.ssh/vagrant_id.pub >> ~/.ssh/authorized_keys
+    - cat ~/.ssh/opencv.pub >> ~/.ssh/authorized_keys
 
-    - ssh -i ~/.ssh/opencv vagrant@192.168.33.11 
+    - ssh -i ~/.ssh/opencv_id vagrant@192.168.33.11 
 
 
 # Running
