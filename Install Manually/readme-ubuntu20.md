@@ -16,7 +16,7 @@ softwares&updates -> additional drivers -> clicar no driver e instalar
 	
 -> Cuda 11.2.0:
 	
-	https://developer.nvidia.com/cuda-11.2.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=2004&target_type=deblocal
+	[cuda 11.2.0](https://developer.nvidia.com/cuda-11.2.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=2004&target_type=deblocal)
 
 	
 -> cdnn 7.6.5:
