@@ -23,6 +23,8 @@ softwares&updates -> additional drivers -> clicar no driver e instalar
 
 	[DOWNLOAD](https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.0.5/11.1_20201106/cudnn-11.1-linux-x64-v8.0.5.39.tgz)
 	
+	(DOWNLOAD)[https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.1.1.33/11.2_20210301/cudnn-11.2-linux-x64-v8.1.1.33.tgz]
+	
 	[REFERENCE](https://developer.nvidia.com/rdp/cudnn-archive)
 	
 	- After extracting:
